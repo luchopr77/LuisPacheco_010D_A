@@ -114,4 +114,50 @@ def eliminar_juego(codigo, dic_juegos, dic_inventario):
         return True
     return False
 
-def mostrar_menu
+def main():
+    juegos = {
+        'G001': ['Eclipse Runner', 'PC', 'accion', 'T', True, 'NovaStudio'],
+        'G002' : ['Puzzle Atlas', 'Switch', 'puzzle', 'E', False, 'BrightWorks'],
+        'G003' : ['Sky legends', 'PS5', 'aventura', 'T', True, 'OrionGames'],
+        'G004': ['Racing Pulse', 'PC', 'carreras', 'E', True, 'VelocityLab'],
+        'G005': ['Mystic Farm', 'Switch', 'simulacion', 'E', False, 'GreenSeed'],
+        'G006': ['Shadow Tactics', 'Xbox', 'estrategia', 'M', False, 'IronGate']
+    }
+
+    inventario = {
+        'G001': [9990, 7],
+        'G002': [19990, 0],
+        'G003': [42990, 3],
+        'G004': [14990, 5],
+        'G005': [17990, 9],
+        'G006': [39990, 2]
+    }
+
+    continuar = True
+    while continuar ==True:
+        print("======== MENÚ PRINCIPAL ========")
+        print("1. Stock por plataforma")
+        print("2. Búsqueda de juegos por rango de precio")
+        print("3. Actualizar precio de juego")
+        print("4. Agregar juego")
+        print("5. Eliminar juego")
+        print("6. Salir")
+        print("=================================")
+        opcion = leer_opcion()
+        
+        if opcion == 1:
+            plat = input("Ingrese plataforma a consultar: ")
+            stock_plataforma(plat, juegos, inventario)
+        elif opcion == 2:
+            pedir_precios = True
+            while pedir_precios == True:
+                try:
+                    p_min = int(input("Ingrese precio minim: "))
+                    p_max = int(input("Ingrese precio maximo: "))
+                    if p_min >= 0 and p_max >= 0 and p_min <= p_max:
+                        pedir_precios
+                    else:
+                        print("Debe ingresar valores enteros")
+                except ValueError:
+                    print("Debe ingresar valores enteros")
+            busqueda_precio(p_min, p_max, juegos, inventario)
