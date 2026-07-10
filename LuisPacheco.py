@@ -59,5 +59,10 @@ def validar_codigo(codigo, dic_juegos):
         return False
     return True
 
-def validar_plataforma(plataforma)
-    if plataforma.strip()
+def validar_plataforma(plataforma):
+    if plataforma.strip() == "":
+        return False
+    return True 
+
+def validar_genero(genero):
+    if genero.strip() == 
