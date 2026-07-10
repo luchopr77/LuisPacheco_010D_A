@@ -65,4 +65,53 @@ def validar_plataforma(plataforma):
     return True 
 
 def validar_genero(genero):
-    if genero.strip() == 
+    if genero.strip() == "":
+        return False
+    return True
+
+def validar_clasificacion(clasificacion):
+    c = clasificacion.strip()
+    if c == 'E' or c == 'T' or c == 'M':
+        return True
+    return False
+
+def validar_multiplayer(multiplayer):
+    m = multiplayer.strip().lower()
+    if m == 's' or m == 'n':
+        return True
+    return False
+
+def validar_editor(editor):
+    if editor.strip() == "":
+        return True
+    return False
+
+def validar_precio(precio):
+    if precio > 0:
+        return True
+    return False
+
+def agregar_juego(codigo, titulo, plataforma, genero, clasificacion, multiplayer, editor, precio, stock, dic_juegos, dic_inventario):
+    cod_up = codigo.strip().upper()
+    if cod_up in dic_juegos:
+        return False
+    if multiplayer.strip().lower() == 's':
+        mp_bool = True
+    else:
+        mp_bool = False
+    
+    dic_juegos[cod_up] = [titulo.strip(), plataforma.strip(), clasificacion.strip(), mp_bool, editor.strip()]
+    dic_inventario[cod_up] = [precio, stock]
+    return True
+
+def eliminar_juego(codigo, dic_juegos, dic_inventario):
+    cod_up = codigo.strip().upper()
+    if buscar_codigo(cod_up, dic_juegos) == True:
+        if cod_up in dic_juegos:
+            del dic_juegos[cod_up]
+        if cod_up in dic_inventario:
+            del dic_inventario[cod_up]
+        return True
+    return False
+
+def mostrar_menu
