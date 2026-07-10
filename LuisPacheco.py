@@ -75,6 +75,11 @@ def validar_clasificacion(clasificacion):
         return True
     return False
 
+def validar_titulo(titulo):
+    if titulo.strip() == "":
+        return False
+    return True
+
 def validar_multiplayer(multiplayer):
     m = multiplayer.strip().lower()
     if m == 's' or m == 'n':
@@ -88,6 +93,11 @@ def validar_editor(editor):
 
 def validar_precio(precio):
     if precio > 0:
+        return True
+    return False
+
+def validar_stock(stock):
+    if stock >= 0:
         return True
     return False
 
