@@ -248,4 +248,4 @@ def main():
                 
         elif opcion == 6:
             print("Programa finalizado.")
-            continuar = False
+            continuar = True
