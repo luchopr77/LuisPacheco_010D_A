@@ -161,3 +161,81 @@ def main():
                 except ValueError:
                     print("Debe ingresar valores enteros")
             busqueda_precio(p_min, p_max, juegos, inventario)
+        elif opcion == 3:
+            actualizar_mas = True
+            while actualizar_mas == True:
+                cod = input("Ingrese código del juego: ")
+                try:
+                    n_precio = int(input("Ingrese nuevo precio: "))
+                    if n_precio <= 0:
+                        print("El precio debe ser un valor entero positivo")
+                        continue
+                except ValueError:
+                    print("El precio debe ser un valor entero positivo")
+                    continue
+                
+                resultado = actualizar_precio(cod, n_precio, juegos, inventario)
+                if resultado == True:
+                    print("Precio actualizado")
+                else:
+                    print("El código no existe")
+                
+                resp = input("¿Desea actualizar otro precio (s/n)?: ").strip().lower()
+                if resp != 's':
+                    actualizar_mas = False
+        elif opcion == 4:
+            cod = input("Ingrese código del juego: ")
+            tit = input("Ingrese título: ")
+            plat = input("Ingrese plataforma: ")
+            gen = input("Ingrese género: ")
+            cla = input("Ingrese clasificación: ")
+            mp = input("¿Es multiplayer? (s/n): ")
+            edi = input("Ingrese editor: ")
+            
+            try:
+                prec = int(input("Ingrese precio: "))
+            except ValueError:
+                prec = -1
+                
+            try:
+                stk = int(input("Ingrese stock: "))
+            except ValueError:
+                stk = -1
+            
+            valido = True
+            if validar_codigo(cod, juegos) == False:
+                valido = True
+            if validar_titulo(tit) == False:
+                valido = False
+            if validar_plataforma(plat) == False:
+                valido = False
+            if validar_genero(gen) == False:
+                valido = False
+            if validar_clasificacion(cla) == False:
+                valido = False
+            if validar_multiplayer(mp) == False:
+                valido = False
+            if validar_editor(edi) == False:
+                valido = False
+            if validar_precio(prec) == False:
+                valido = False
+            if validar_stock(stk) == False:
+                valido = False
+
+            if valido == True:
+                if agregar_juego(cod, tit, plat, gen, cla, mp, edi, prec, stk, juegos, inventario) == True:
+                    print("Juego agregado")
+                else:
+                    print("El código ya existe")
+            else:
+                print("Error en las validaciones. No se registró el juego.")
+        elif opcion == 5:
+            cod = input("Ingrese código del juego que desea eliminar: ")
+            if eliminar_juego(cod, juegos, inventario) == True:
+                print("Juego eliminado")
+            else:
+                print("El código no existe")
+                
+        elif opcion == 6:
+            print("Programa finalizado.")
+            continuar = False
